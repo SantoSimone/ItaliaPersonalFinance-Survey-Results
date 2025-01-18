@@ -5,7 +5,7 @@ import streamlit as st
 
 
 def pie_charts_page(df_name: str):
-    st.title('Pie Charts')
+    st.title('Grafici a torta')
     st.write("NB: anche i grafici sono interattivi, potete oscurare valori cliccando sulla legenda. Questo filtraggio "
              "varrà solo per il grafico con cui interagite, non sull'intero censimento.")
     st.divider()
@@ -14,7 +14,7 @@ def pie_charts_page(df_name: str):
 
 
 def bar_charts_page(df_name: str):
-    st.title('Bar Charts')
+    st.title('Grafici a barre')
     df = st.session_state[df_name]
     create_bar_charts(df)
 
@@ -64,7 +64,7 @@ for col in st.session_state['expat_df'].columns.tolist():
                                             key=f"expat_{col}")
     st.session_state['expat_df'] = st.session_state['expat_df'][st.session_state['expat_df'][col].isin(col_select)]
 
-theme_btn = st.sidebar.toggle('Toggle theme', key='toggle_theme')
+theme_btn = st.sidebar.toggle('Cambia tema', key='toggle_theme')
 if theme_btn:
     st._config.set_option('theme.base', 'dark')
 else:
