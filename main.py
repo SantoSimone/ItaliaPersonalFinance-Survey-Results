@@ -33,19 +33,22 @@ def intro_page():
     Tramite questo sito potrete consultare i risultati dell'ultimo censimento che si è svolto (attualmente [quello del 2025](https://www.reddit.com/r/ItaliaPersonalFinance/comments/1i3l0y6/censimento_ipf_2025_chi_siete_cosa_portate_un/)) 
     
     Tramite la barra laterale potete accedere ad alcuni grafici base fatti sui dati del censimento e divisi per italiani residenti ed espatriati.
-    Sempre tramite la barra potrete filtrare i dati: per ogni domanda presente nel censimento avrete la possibilità di filtrare quali risposte includere nell'analisi, ovviamente di default saranno tutte selezionate.     
+    Sempre tramite la barra potrete filtrare i dati: per ogni domanda presente nel censimento avrete la possibilità di filtrare quali risposte includere nell'analisi, ovviamente di default saranno tutte selezionate.
+                
+
+    NOTA: ci siamo scordati di aggiungere la percentuale di obbligazionario nelle domande, quindi l'abbiamo stimata usando le risposte alle domande su azionario e crypto. La sezione è stata nominata "Percentuale obbligazionario"
     """)
 
 
 pages = st.navigation({
     "Intro": [st.Page(intro_page, title='Informazioni', url_path='intro')],
     "Italiani": [
-        st.Page(functools.partial(pie_charts_page, df_name='it_df'), title='Pie Charts', url_path='ita_pie_charts'),
-        st.Page(functools.partial(bar_charts_page, df_name='it_df'), title='Bar Charts', url_path='ita_bar_charts')
+        st.Page(functools.partial(pie_charts_page, df_name='it_df'), title='Grafici a torta', url_path='ita_pie_charts'),
+        st.Page(functools.partial(bar_charts_page, df_name='it_df'), title='Grafici a barre', url_path='ita_bar_charts')
     ],
     'Expat': [
-        st.Page(functools.partial(pie_charts_page, df_name='expat_df'), title='Pie Charts', url_path='exp_pie_charts'),
-        st.Page(functools.partial(bar_charts_page, df_name='expat_df'), title='Bar Charts', url_path='exp_bar_charts')
+        st.Page(functools.partial(pie_charts_page, df_name='expat_df'), title='Grafici a torta', url_path='exp_pie_charts'),
+        st.Page(functools.partial(bar_charts_page, df_name='expat_df'), title='Grafici a barre', url_path='exp_bar_charts')
     ]
 })
 
@@ -66,8 +69,8 @@ for col in st.session_state['expat_df'].columns.tolist():
 
 theme_btn = st.sidebar.toggle('Cambia tema', key='toggle_theme')
 if theme_btn:
-    st._config.set_option('theme.base', 'dark')
-else:
     st._config.set_option('theme.base', 'light')
+else:
+    st._config.set_option('theme.base', 'dark')
 
 pages.run()
