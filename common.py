@@ -35,6 +35,9 @@ def create_pie_charts(base_df: pd.DataFrame):
             st.write(f"Colonna: {col}")
 
             tmp_df = base_df[col].value_counts().to_frame().join(base_df[col].value_counts(normalize=True))
+
+            total = tmp_df['count'].sum()
+            tmp_df = tmp_df.drop(labels=[-1, 'Non specificato'], errors='ignore', axis=0)
             tmp_df = tmp_df.rename(columns={'count': 'Conteggio', 'proportion': 'Percentuale'})
             tmp_df['Risposta'] = tmp_df.index
             tmp_df = tmp_df[['Risposta', 'Conteggio', 'Percentuale']]
@@ -49,8 +52,8 @@ def create_pie_charts(base_df: pd.DataFrame):
                              'Conteggio': {'alignment': 'center'},
                          })
 
-            total = tmp_df["Conteggio"].drop(-1, errors='ignore').drop('Non specificato', errors='ignore').sum()
-            st.write(f'Totale voti effettivi: {total}')
+            tot_effective = tmp_df["Conteggio"].sum()
+            st.write(f'Totale voti effettivi: {tot_effective} (Astenuti: {total - tot_effective})')
 
             fig = px.pie(tmp_df, values='Conteggio', names='Risposta')
             st.plotly_chart(fig, use_container_width=True, key=f"{col}_pie")
