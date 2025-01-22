@@ -18,12 +18,12 @@ def load_df(path: str, name: str):
         else:
             df[col] = df[col].fillna('Non specificato')
 
-    crypto_col = "Percentuale crypto nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
-    stock_col = "Percentuale azionario nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
-    real_estate_col = "Percentuale immobiliare (esclusa prima casa) nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
-    bond_col = "Percentuale obbligazionario (vedi pagina informazioni)"
-    df[bond_col] = 10 - df[stock_col] - df[crypto_col] - df[real_estate_col]
-    df[bond_col] = df[bond_col][(df[bond_col] <= 10) & (df[bond_col] >= 0)]
+    # crypto_col = "Percentuale crypto nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
+    # stock_col = "Percentuale azionario nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
+    # real_estate_col = "Percentuale immobiliare (esclusa prima casa) nel Patrimonio? (i valori sono da moltiplicare per 10 - 1 corrisponde al 10%)"
+    # bond_col = "Percentuale obbligazionario (vedi pagina informazioni)"
+    # df[bond_col] = 10 - df[stock_col] - df[crypto_col] - df[real_estate_col]
+    # df[bond_col] = df[bond_col][(df[bond_col] <= 10) & (df[bond_col] >= 0)]
 
     st.session_state[name] = df
 

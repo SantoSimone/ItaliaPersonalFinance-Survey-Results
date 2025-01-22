@@ -34,9 +34,6 @@ def intro_page():
     
     Tramite la barra laterale potete accedere ad alcuni grafici base fatti sui dati del censimento e divisi per italiani residenti ed espatriati.
     Sempre tramite la barra potrete filtrare i dati: per ogni domanda presente nel censimento avrete la possibilità di filtrare quali risposte includere nell'analisi, ovviamente di default saranno tutte selezionate.
-                
-
-    NOTA: ci siamo scordati di aggiungere la percentuale di obbligazionario nelle domande, quindi l'abbiamo stimata usando le risposte alle domande su azionario e crypto. La sezione è stata nominata "Percentuale obbligazionario"
     """)
 
 
