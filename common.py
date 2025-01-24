@@ -84,6 +84,9 @@ def create_bar_charts(base_df: pd.DataFrame):
             tot_effective = tmp_df["Conteggio"].sum()
             st.write(f'Totale voti effettivi: {tot_effective} (Astenuti: {total - tot_effective})')
 
+            toggle = st.toggle(label='Ordina per Risposta o Conteggio', key=f'toggle_{col}')
+            tmp_df = tmp_df.sort_values(by='Conteggio' if toggle else 'Risposta', ascending=False)
+
             fig = px.bar(tmp_df, y='Risposta', x='Conteggio', orientation='h')
             st.plotly_chart(fig, use_container_width=True, key=f"{col}_bar")
             st.divider()
